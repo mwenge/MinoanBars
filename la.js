@@ -317,7 +317,7 @@
 		let t = x.target
 		if (!x.ctrlKey && !x.shiftKey && !x.altKey && !x.metaKey) {
 			if (x.key == "Tab") {
-				let i = t.selectionStart, v = t.value, gs = v.lastIndexOf('-'), c = tc[v.slice(gs+1, i)]  
+				let i = t.selectionStart, v = t.value, gs = v.lastIndexOf('-'), c = tc[v.slice(gs+1, i).toUpperCase()]  
 				if (c) { t.value = v.slice(0, gs) + c + v.slice(i); t.selectionStart = t.selectionEnd = i - 1; pd(x) }
 			}
 		}
