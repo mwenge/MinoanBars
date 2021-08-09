@@ -288,10 +288,23 @@
 	}
 	let d = document, el = d.createElement('div'); el.innerHTML =
 		`<div class=ngn_lb><span class=ngn_x title=Close>❎</span>${lbh}</div>
- <style>@font-face{font-family:"LinearA Sans Mono";src:local("LinearA Sans Mono"),url(NotoSansLinearA-LinearB.ttf)format('ttf');}</style>
+  <style>
+  @font-face {
+    font-family: 'Noto Sans Linear A and B';
+    font-style: normal;
+    font-weight: 400;
+    src: url(NotoSansLinearA-LinearB.ttf) format('truetype');
+  }
+  </style>
  <style>
+  body {
+    font-family: 'Arial','AegeanRegular', 'Aegean', 'Noto Sans Linear A and B', sans-serif;
+  }
+  .lineara_font {
+    font-family: 'Arial','AegeanRegular', 'Aegean', 'Noto Sans Linear A and B', sans-serif;
+  }
   .ngn_lb{position:fixed;top:0;left:0;right:0;background-color:#eee;color:#000;cursor:default;z-index:2147483647;
-    font-family:"LinearA Sans Mono",monospace;border-bottom:solid #999 1px;padding:2px 2px 0 2px;word-wrap:break-word;}
+    font-family:"Noto Sans Linear A and B",sans-serif;border-bottom:solid #999 1px;padding:2px 2px 0 2px;word-wrap:break-word;}
   .ngn_lb b{cursor:pointer;padding:0 1px;font-weight:normal}
   .ngn_lb b:hover,.ngn_bq .ngn_lb{background-color:#777;color:#fff}
   .ngn_x{float:right;color:#999;cursor:pointer;margin-top:-3px}
@@ -304,6 +317,7 @@
 	ev(lb, 'mousedown', x => {
 		if (x.target.classList.contains('ngn_x')) { lb.hidden = 1; upd(); pd(x); return }
 		if (x.target.nodeName === 'B' && t) {
+      t.classList.add("lineara_font")
 			let i = t.selectionStart, j = t.selectionEnd, v = t.value, s = x.target.textContent
       let l = s.length;
 			if (i != null && j != null) { t.value = v.slice(0, i) + s + v.slice(j); t.selectionStart = t.selectionEnd = i + l }
@@ -314,6 +328,7 @@
 		let t = x.target
 		if (!x.ctrlKey && !x.shiftKey && !x.altKey && !x.metaKey) {
 			if (x.key == "Tab") {
+        t.classList.add("lineara_font")
 				let i = t.selectionStart, v = t.value, gs = v.lastIndexOf('-'), c = tc[v.slice(gs+1, i).toUpperCase()]  
 				if (c) { t.value = v.slice(0, gs) + c + v.slice(i); t.selectionStart = t.selectionEnd = i - 1; pd(x) }
 			}
@@ -324,7 +339,7 @@
 		if (nn !== 'textarea' && (nn !== 'input' || t0.type !== 'text' && t0.type !== 'search')) return
 		t = t0; if (!t.ngn) { t.ngn = 1; ts.push(t); ev(t, 'keydown', fk) }
 	}
-	let upd = _ => { d.body.style.marginTop = lb.clientHeight + 'px' }
+	let upd = _ => { d.body.style.marginTop = (lb.clientHeight + 20) + 'px' }
 	upd(); ev(window, 'resize', upd)
 	ev(d, 'focus', ff, !0); let ae = d.activeElement; ae && ff({ type: 'focus', target: ae })
 })();
