@@ -291,10 +291,17 @@
 	}
 	let d = document, el = d.createElement('div'); el.innerHTML =
 		`<div class=ngn_lb><span class=ngn_x title=Close>❎</span>${lbh}</div>
- <style>@font-face{font-family:"LinearA Sans Mono";src:local("LinearA Sans Mono"),url(NotoSansLinearA-LinearB.ttf)format('ttf');}</style>
+  <style>
+  @font-face {
+    font-family: 'Noto Sans Linear A and B';
+    font-style: normal;
+    font-weight: 400;
+    src: url(NotoSansLinearA-LinearB.ttf) format('truetype');
+  }
+  </style>
  <style>
   .ngn_lb{position:fixed;top:0;left:0;right:0;background-color:#eee;color:#000;cursor:default;z-index:2147483647;
-    font-family:"LinearA Sans Mono",monospace;border-bottom:solid #999 1px;padding:2px 2px 0 2px;word-wrap:break-word;}
+    font-family:"Noto Sans Linear A and B",sans-serif;border-bottom:solid #999 1px;padding:2px 2px 0 2px;word-wrap:break-word;}
   .ngn_lb b{cursor:pointer;padding:0 1px;font-weight:normal}
   .ngn_lb b:hover,.ngn_bq .ngn_lb{background-color:#777;color:#fff}
   .ngn_x{float:right;color:#999;cursor:pointer;margin-top:-3px}
@@ -327,7 +334,7 @@
 		if (nn !== 'textarea' && (nn !== 'input' || t0.type !== 'text' && t0.type !== 'search')) return
 		t = t0; if (!t.ngn) { t.ngn = 1; ts.push(t); ev(t, 'keydown', fk) }
 	}
-	let upd = _ => { d.body.style.marginTop = lb.clientHeight + 'px' }
+	let upd = _ => { d.body.style.marginTop = (lb.clientHeight + 20) + 'px' }
 	upd(); ev(window, 'resize', upd)
 	ev(d, 'focus', ff, !0); let ae = d.activeElement; ae && ff({ type: 'focus', target: ae })
 })();
