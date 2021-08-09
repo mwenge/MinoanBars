@@ -300,6 +300,12 @@
   }
   </style>
  <style>
+  body {
+    font-family: 'Arial','AegeanRegular', 'Aegean', 'Noto Sans Linear A and B', sans-serif;
+  }
+  .lineara_font {
+    font-family: 'Arial','AegeanRegular', 'Aegean', 'Noto Sans Linear A and B', sans-serif;
+  }
   .ngn_lb{position:fixed;top:0;left:0;right:0;background-color:#eee;color:#000;cursor:default;z-index:2147483647;
     font-family:"Noto Sans Linear A and B",sans-serif;border-bottom:solid #999 1px;padding:2px 2px 0 2px;word-wrap:break-word;}
   .ngn_lb b{cursor:pointer;padding:0 1px;font-weight:normal}
@@ -314,6 +320,7 @@
 	ev(lb, 'mousedown', x => {
 		if (x.target.classList.contains('ngn_x')) { lb.hidden = 1; upd(); pd(x); return }
 		if (x.target.nodeName === 'B' && t) {
+      t.classList.add("lineara_font")
 			let i = t.selectionStart, j = t.selectionEnd, v = t.value, s = x.target.textContent
       let l = s.length;
 			if (i != null && j != null) { t.value = v.slice(0, i) + s + v.slice(j); t.selectionStart = t.selectionEnd = i + l }
@@ -324,6 +331,7 @@
 		let t = x.target
 		if (!x.ctrlKey && !x.shiftKey && !x.altKey && !x.metaKey) {
 			if (x.key == "Tab") {
+        t.classList.add("lineara_font")
 				let i = t.selectionStart, v = t.value, gs = v.lastIndexOf('-'), c = tc[v.slice(gs+1, i).toUpperCase()]  
 				if (c) { t.value = v.slice(0, gs) + c + v.slice(i); t.selectionStart = t.selectionEnd = i - 1; pd(x) }
 			}
